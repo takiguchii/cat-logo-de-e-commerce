@@ -3,7 +3,7 @@
     <!-- espaçamento  -->
     <div
       class="w-full h-[400px] bg-cover bg-center bg-no-repeat"
-      style="background-image: url('https://via.placeholder.com/1200x400');"
+      style="background-image: url('https://img.freepik.com/fotos-gratis/luminaria-de-neon-para-vendas-de-sexta-feira-negra_23-2151833076.jpg?semt=ais_hybrid&w=740');"
     >
       <!-- Frase em cima da imaghem de fundo  -->
       <div class="h-full flex items-center justify-center text-white text-3xl font-bold bg-black/60">
