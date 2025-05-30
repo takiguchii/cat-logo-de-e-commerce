@@ -13,9 +13,37 @@
     </div>
 
     <!-- Conteudo do ecomerce  -->
-    <main class="flex-1 flex justify-center items-center">
-      <div class="w-full max-w-3xl bg-white rounded-3xl p-10 shadow">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, molestias? Aut possimus, ut soluta itaque consequatur ea nisi eligendi temporibus veritatis quidem vero inventore suscipit ipsam provident dolorem rem ad.
+    <main class="flex-1 flex justify-center items-center px-4 py-10">
+      <div class="w-full max-w-3xl bg-white rounded-3xl p-10 shadow space-y-10">
+        <h2 class="text-2xl font-bold text-neutral-800 text-center">Categorias</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <!-- CARDS -->
+          <div class="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-2xl transition duration-300">
+            <h3 class="text-lg font-semibold text-neutral-800 text-center">Categoria 1</h3>
+            <p class="text-sm text-neutral-600 mt-2">Descrição breve da categoria.</p>
+          </div>
+          <div class="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-2xl transition duration-300">
+            <h3 class="text-lg font-semibold text-neutral-800 text-center">Categoria 2</h3>
+            <p class="text-sm text-neutral-600 mt-2">Descrição breve da categoria.</p>
+          </div>
+          <div class="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-2xl transition duration-300">
+            <h3 class="text-lg font-semibold text-neutral-800 text-center">Categoria 3</h3>
+            <p class="text-sm text-neutral-600 mt-2">Descrição breve da categoria.</p>
+          </div>
+          <div class="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-2xl transition duration-300">
+            <h3 class="text-lg font-semibold text-neutral-800 text-center">Categoria 4</h3>
+            <p class="text-sm text-neutral-600 mt-2">Descrição breve da categoria.</p>
+          </div>
+          <div class="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-2xl transition duration-300">
+            <h3 class="text-lg font-semibold text-neutral-800 text-center">Categoria 5</h3>
+            <p class="text-sm text-neutral-600 mt-2">Descrição breve da categoria.</p>
+          </div>
+        </div>
+          <div class="flex justify-center mt-6">
+            <button class="bg-neutral-800 text-white px-6 py-3 rounded-full hover:bg-blue-700/90 transition duration-300">
+              Ver mais categorias
+            </button>
+          </div>
       </div>
     </main>
   </div>
