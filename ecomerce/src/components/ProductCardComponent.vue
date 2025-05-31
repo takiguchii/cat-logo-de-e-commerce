@@ -1,6 +1,9 @@
 <template>
     <div class="relative">
-        <!-- Botão Anterior -->
+        <!-- Título da Seção -->
+        <h2 class="text-2xl font-bold text-neutral-800 text-center mb-8">{{ title }}</h2>
+
+        <!-- Botões de navegação -->
         <button @click="previousPage"
             class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 z-10"
             :disabled="currentPage === 0" :class="{ 'opacity-50 cursor-not-allowed': currentPage === 0 }">
@@ -10,21 +13,22 @@
             </svg>
         </button>
 
-        <!-- Produtos -->
+        <!-- carregando o estado  -->
         <div v-if="loading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            <div v-for="n in 5" :key="n"
-                class="bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all">
-                <div class="aspect-square bg-gray-200 animate-pulse"></div>
+            <div v-for="n in 5" :key="n" class="bg-white rounded-xl shadow-md overflow-hidden animate-pulse">
+                <div class="aspect-square bg-gray-200"></div>
                 <div class="p-4">
-                    <div class="h-4 bg-gray-200 rounded animate-pulse"></div>
+                    <div class="h-4 bg-gray-200 rounded"></div>
                 </div>
             </div>
         </div>
 
+        <!-- erro de estado  -->
         <div v-else-if="error" class="text-center text-red-600">
             <p>{{ error }}</p>
         </div>
 
+        <!-- Produtos grid -->
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             <div v-for="product in displayedProducts" :key="product.id"
                 class="bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all">
@@ -38,6 +42,10 @@
                     <p class="text-green-600 font-bold text-center mt-2">
                         ${{ product.price }}
                     </p>
+                    <div v-if="showDiscount && product.discountPercentage"
+                        class="mt-1 text-center text-sm text-red-500">
+                        {{ product.discountPercentage }}% OFF
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,8 +64,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
+
+const props = defineProps({
+    title: {
+        type: String,
+        required: true
+    },
+    apiUrl: {
+        type: String,
+        required: true
+    },
+    showDiscount: {
+        type: Boolean,
+        default: false
+    }
+});
 
 const products = ref([]);
 const loading = ref(true);
@@ -87,14 +110,14 @@ const fetchProducts = async () => {
     try {
         loading.value = true;
         error.value = null;
-        const response = await axios.get('https://dummyjson.com/products?limit=20');
+        const response = await axios.get(props.apiUrl);
         if (response.data && response.data.products) {
             products.value = response.data.products;
         } else {
             error.value = 'Dados dos produtos não encontrados';
         }
     } catch (err) {
-        console.error('Erro ao buscar produtos:', err);
+        console.error('Erro ao carregar produtos:', err);
         error.value = 'Erro ao carregar os produtos. Tente novamente mais tarde.';
     } finally {
         loading.value = false;

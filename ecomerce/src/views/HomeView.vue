@@ -8,10 +8,14 @@
       </div>
     </div>
 
-    <main class="flex-1 flex justify-center items-center px-4 py-10">
-      <div class="w-full max-w-5xl bg-white rounded-3xl p-10 shadow space-y-10">
-        <h2 class="text-2xl font-bold text-neutral-800 text-center">Nossos Produtos em destaques</h2>
-        <ProductCardComponent />
+    <main class="flex-1 flex flex-col justify-center items-center px-4 py-10 space-y-10">
+      <div class="w-full max-w-5xl bg-white rounded-3xl p-10 shadow">
+        <ProductCardComponent title="Produtos em Destaque" apiUrl="https://dummyjson.com/products?limit=100" />
+      </div>
+
+      <div class="w-full max-w-5xl bg-white rounded-3xl p-10 shadow">
+        <ProductCardComponent title="Ofertas Imperdíveis"
+          apiUrl="https://dummyjson.com/products?limit=10&skip=0&sort=desc" :showDiscount="true" />
       </div>
     </main>
   </div>
