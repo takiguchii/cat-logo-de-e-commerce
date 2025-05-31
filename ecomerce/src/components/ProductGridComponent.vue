@@ -19,8 +19,12 @@
         <!-- Produtos da grid -->
         <div v-else>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                <div v-for="product in currentProducts" :key="product.id"
-                    class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <router-link
+                    v-for="product in currentProducts"
+                    :key="product.id"
+                    :to="{ name: 'ProductDetail', params: { id: product.id } }"
+                    class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 block"
+                >
                     <!-- Imagem do Produto (Sem o badge de estoque) -->
                     <div class="aspect-square">
                         <img :src="product.thumbnail" :alt="product.title" class="w-full h-full object-cover">
@@ -47,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </router-link>
             </div>
 
             <!-- Paginação-->
@@ -77,7 +81,6 @@ const error = ref(null)
 const currentPage = ref(1)
 const itemsPerPage = 20
 
-// função para configurar cards por pagina 
 const totalPages = computed(() => Math.ceil(products.value.length / itemsPerPage))
 const currentProducts = computed(() => {
     const start = (currentPage.value - 1) * itemsPerPage
@@ -85,13 +88,11 @@ const currentProducts = computed(() => {
     return products.value.slice(start, end)
 })
 
-// Methods
 const fetchProducts = async () => {
     try {
         loading.value = true
         const response = await fetch('https://dummyjson.com/products?limit=100')
         const data = await response.json()
-
         if (!data.products) throw new Error('Dados inválidos recebidos da API')
         products.value = data.products
     } catch (err) {
@@ -116,7 +117,6 @@ const prevPage = () => {
     }
 }
 
-// chamando função para gerar produtos 
 onMounted(() => {
     fetchProducts()
 })
