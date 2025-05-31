@@ -1,3 +1,7 @@
+<script setup>
+import ProductCardComponent from '../components/ProductCardComponent.vue'
+</script>
+
 <template>
   <div class="min-h-screen flex flex-col bg-gray-100">
     <div class="w-full h-[400px] bg-cover bg-center bg-no-repeat"
@@ -23,6 +27,3 @@
   </div>
 </template>
 
-<script setup>
-import ProductCardComponent from '../components/ProductCardComponent.vue'
-</script>
