@@ -1,30 +1,32 @@
 <script setup>
 import { ref } from 'vue'
-import { RouterView } from 'vue-router'
 import Navbar from './components/NavbarComponent.vue'
-import Footer from './components/FooterComponent.vue'
 import Sidebarcomponent from './components/Sidebarcomponent.vue'
+import Footer from './components/FooterComponent.vue'
 
 const sidebarAberta = ref(false)
-
-function alternarSidebar() {
-  sidebarAberta.value = !sidebarAberta.value
-}
+const alternarSidebar = () => sidebarAberta.value = !sidebarAberta.value
+const fecharSidebar = () => sidebarAberta.value = false
 </script>
 
 <template>
   <div class="min-h-screen flex flex-col relative">
-    <!-- Sidebar -->
-    <Sidebarcomponent v-if="sidebarAberta" />
+    <!-- Overlay -->
+    <div
+      v-if="sidebarAberta"
+      class="fixed inset-0 bg-black/40 z-40"
+      @click="fecharSidebar"
+    ></div>
 
-    <!-- Navbar com botão que emite toggle -->
+    <!-- Sidebar -->
+    <Sidebarcomponent v-if="sidebarAberta" class="z-50" />
+
+    <!-- Navbar -->
     <Navbar @toggle-sidebar="alternarSidebar" />
 
-    <!-- Conteúdo principal -->
     <main class="flex-grow">
       <RouterView />
     </main>
-
     <Footer />
   </div>
 </template>
