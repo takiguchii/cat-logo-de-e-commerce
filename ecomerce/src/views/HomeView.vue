@@ -9,13 +9,15 @@
     </div>
 
     <main class="flex-1 flex flex-col justify-center items-center px-4 py-10 space-y-10">
-      <div class="w-full max-w-5xl bg-white rounded-3xl p-10 shadow">
-        <ProductCardComponent title="Produtos em Destaque" apiUrl="https://dummyjson.com/products?limit=100" />
+      <!-- Ofertas primeiro -->
+      <div class="w-full max-w-[90vw] bg-white rounded-3xl p-10 shadow">
+        <ProductCardComponent title="Ofertas Imperdíveis"
+          apiUrl="https://dummyjson.com/products?limit=24&skip=10&sort=price" :showDiscount="true" />
       </div>
 
-      <div class="w-full max-w-5xl bg-white rounded-3xl p-10 shadow">
-        <ProductCardComponent title="Ofertas Imperdíveis"
-          apiUrl="https://dummyjson.com/products?limit=10&skip=0&sort=desc" :showDiscount="true" />
+      <!-- Produtos em destaque depois -->
+      <div class="w-full max-w-[90vw] bg-white rounded-3xl p-10 shadow">
+        <ProductCardComponent title="Produtos em Destaque" apiUrl="https://dummyjson.com/products?limit=24" />
       </div>
     </main>
   </div>
