@@ -1,3 +1,7 @@
+<script setup>
+import ProductCardComponent from '../components/ProductCardComponent.vue'
+</script>
+
 <template>
   <div class="min-h-screen flex flex-col bg-gray-100">
     <div class="w-full h-[400px] bg-cover bg-center bg-no-repeat"
@@ -9,13 +13,11 @@
     </div>
 
     <main class="flex-1 flex flex-col justify-center items-center px-4 py-10 space-y-10">
-      <!-- Ofertas primeiro -->
       <div class="w-full max-w-[90vw] bg-white rounded-3xl p-10 shadow">
         <ProductCardComponent title="Ofertas Imperdíveis"
           apiUrl="https://dummyjson.com/products?limit=24&skip=10&sort=price" :showDiscount="true" />
       </div>
-
-      <!-- Produtos em destaque depois -->
+      
       <div class="w-full max-w-[90vw] bg-white rounded-3xl p-10 shadow">
         <ProductCardComponent title="Produtos em Destaque" apiUrl="https://dummyjson.com/products?limit=24" />
       </div>
@@ -23,6 +25,3 @@
   </div>
 </template>
 
-<script setup>
-import ProductCardComponent from '../components/ProductCardComponent.vue'
-</script>
