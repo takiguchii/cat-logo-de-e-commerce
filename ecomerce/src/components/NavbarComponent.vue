@@ -9,17 +9,26 @@
         </svg>
       </button>
 
-      <!-- Barra de Pesquisa -->
+      <!-- Área de Pesquisa -->
       <div class="flex-1 mx-4">
-        <div class="relative max-w-xl mx-auto">
-          <input type="text" placeholder="Digite aqui..." class="w-full px-4 py-2 rounded-lg bg-[#080C1C] border border-[#4FACFE]/30 
+        <div class="max-w-xl mx-auto relative">
+          <!-- Campo de busca -->
+          <input type="text" v-model="textoBusca" placeholder="Digite aqui..." class="w-full px-4 py-2 rounded-lg bg-[#080C1C] border border-[#4FACFE]/30 
                    text-[#F8F8F8] placeholder-[#F8F8F8]/50
-                   focus:outline-none focus:border-[#4FACFE] focus:ring-1 focus:ring-[#4FACFE]
-                   transition-all duration-200" />
+                   focus:outline-none focus:border-[#4FACFE] focus:ring-1 focus:ring-[#4FACFE]" />
+
+          <!-- Lista de sugestões -->
+          <div v-if="textoBusca && produtosEncontrados.length > 0"
+            class="absolute w-full mt-2 py-2 bg-[#080C1C] border border-[#4FACFE]/30 rounded-lg">
+            <div v-for="produto in produtosEncontrados" :key="produto.id"
+              class="px-4 py-2 hover:bg-[#4FACFE]/10 cursor-pointer text-[#F8F8F8]" @click="irParaProduto(produto)">
+              {{ produto.title }}
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Marca -->
+      <!-- Logo -->
       <RouterLink to="/" class="bg-gradient-to-r from-[#4FACFE] to-[#8CE7FE] bg-clip-text text-transparent 
                font-bold text-xl hover:opacity-80 transition-opacity duration-200">
         TechMart
@@ -29,6 +38,60 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
+import { ref } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
+
+// Emits para o sidebar
 defineEmits(['toggle-sidebar'])
+
+const router = useRouter()
+const textoBusca = ref('')
+const listaProdutos = ref([])
+const produtosEncontrados = ref([])
+
+// Buscar produtos quando o componente carregar
+async function buscarProdutos() {
+  try {
+    const resposta = await fetch('https://dummyjson.com/products')
+    const dados = await resposta.json()
+
+    listaProdutos.value = dados.products
+  } catch (erro) {
+    console.log('Deu error...', erro)
+  }
+}
+
+// Procurar produtos quando digitar
+function procurarProdutos() {
+  if (!textoBusca.value) {
+    produtosEncontrados.value = []
+    return
+  }
+
+  // Filtrar produtos que começam com o texto digitado
+  produtosEncontrados.value = listaProdutos.value
+    .filter(produto =>
+      produto.title.toLowerCase().includes(textoBusca.value.toLowerCase())
+    )
+    .slice(0, 5) //altera o numero de sugestões 
+}
+
+// Vai para a pagina do produto 
+function irParaProduto(produto) {
+  router.push(`/produtos/item/${produto.id}`)
+  textoBusca.value = ''
+  produtosEncontrados.value = []
+}
+
+// analisa a mudança do texto ( Quando vai adicionando as letras )
+import { watch } from 'vue'
+watch(textoBusca, () => {
+  procurarProdutos()
+})
+
+// Carregar produtos quando iniciar
+import { onMounted } from 'vue'
+onMounted(() => {
+  buscarProdutos()
+})
 </script>
