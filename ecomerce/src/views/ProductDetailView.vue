@@ -47,10 +47,26 @@
             <h2 class="text-xl font-semibold mb-2 text-neutral-800">Descrição</h2>
             <p class="text-neutral-600">{{ product.description }}</p>
           </div>
-
-          <!-- Seção de avaliações dos clientes -->
-          <div class="mt-12">
-          </div>
+            <!-- Seção de avaliações dos clientes -->
+            <div class="mt-12">
+              <h2 class="text-xl font-semibold mb-4 text-neutral-800">Avaliações dos Clientes</h2>
+              <div v-if="!product.reviews?.length" class="text-neutral-500">
+                Ainda não há avaliações para este produto.
+              </div>
+              <div v-else class="space-y-4">
+                <div v-for="review in product.reviews" :key="review.reviewerEmail" class="border-b border-gray-200 pb-4">
+                  <div class="flex items-center mb-2">
+                    <div class="flex text-yellow-400">
+                      <span v-for="i in review.rating" :key="i">★</span>
+                      <span class="text-gray-300">{{ '★'.repeat(5 - review.rating) }}</span>
+                    </div>
+                    <span class="ml-2 font-medium text-neutral-800">{{ review.reviewerName }}</span>
+                    <span class="ml-2 text-sm text-neutral-500">{{ new Date(review.date).toLocaleDateString() }}</span>
+                  </div>
+                  <p class="text-neutral-600">{{ review.comment }}</p>
+                </div>
+              </div>
+            </div>
 
           <router-link to="/"
             class="inline-flex items-center mt-8 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
@@ -74,6 +90,13 @@ const error = ref(null)
 
 // Dados mockados das avaliações
 const reviews = ref([
+  {
+    id: 1,
+    rating: 4,
+    comment: "Very satisfied!",
+    user: "Lucas Gordon",
+    date: "2023-11-30"
+  }
 ])
 
 onMounted(async () => {
