@@ -4,7 +4,7 @@
 
     <!-- Container -->
     <div class="relative overflow-x-auto">
-      <!-- Carregando estado -->
+      <!-- Carregando -->
       <div v-if="loading" class="flex gap-4 pb-4">
         <div v-for="n in 8" :key="n" class="flex-shrink-0 w-64 animate-pulse">
           <div class="bg-gray-200 aspect-square rounded-xl"></div>

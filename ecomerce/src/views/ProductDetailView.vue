@@ -31,9 +31,8 @@
             <p class="text-neutral-600">{{ product.description }}</p>
           </div>
           <router-link
-            to="/produtos"
-            class="block mt-8 text-blue-600 hover:underline text-center md:text-left"
-          >
+            to="/"
+            class="block mt-8 text-blue-600 hover:underline text-center md:text-left">
             Voltar para Produtos
           </router-link>
         </div>
