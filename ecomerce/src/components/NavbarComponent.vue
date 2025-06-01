@@ -53,7 +53,7 @@ const produtosEncontrados = ref([])
 // Buscar produtos quando o componente carregar
 async function buscarProdutos() {
     try {
-      const resposta = await fetch('https://dummyjson.com/products?limit=100')
+      const resposta = await fetch('https://dummyjson.com/products?limit=300')
       const dados = await resposta.json()
 
       if (!dados.products) {
