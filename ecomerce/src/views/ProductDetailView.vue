@@ -7,36 +7,29 @@
         <!-- imagens do produto -->
         <div class="flex-shrink-0">
           <!-- Imagem principal  -->
-          <img
-            v-if="product.thumbnail"
-            :src="product.thumbnail"
-            :alt="product.title"
-            class="w-72 h-72 object-cover rounded-xl shadow mb-6 md:mb-0"
-          />
+          <img v-if="product.thumbnail" :src="product.thumbnail" :alt="product.title"
+            class="w-72 h-72 object-cover rounded-xl shadow mb-6 md:mb-0" />
           <!-- imagens secundárias -->
           <div class="flex gap-2 mt-4">
-            <img
-              v-for="image in product.images?.slice(0, 3)"
-              :key="image"
-              :src="image"
-              class="w-20 h-20 object-cover rounded-lg cursor-pointer hover:opacity-75"
-            />
+            <img v-for="image in product.images?.slice(0, 3)" :key="image" :src="image"
+              class="w-20 h-20 object-cover rounded-lg cursor-pointer hover:opacity-75" />
           </div>
         </div>
-        
+
         <!-- detalhes do produto -->
         <div class="flex-1 w-full">
           <h1 class="text-3xl font-bold mb-4 text-neutral-900">{{ product.title }}</h1>
-          
+
           <!-- Sistema de avaliação-->
           <div class="flex items-center mb-4">
             <div class="flex text-yellow-400">
-              <span v-for="i in Math.floor(product.rating)" :key="i">★</span> <!--Nunca demorei tanto pra achar um emoji-->
+              <span v-for="i in Math.floor(product.rating)" :key="i">★</span>
+              <!--Nunca demorei tanto pra achar um emoji-->
               <span class="text-gray-300">{{ '★'.repeat(5 - Math.floor(product.rating)) }}</span>
             </div>
             <span class="ml-2 text-neutral-600">({{ product.rating }})</span>
           </div>
-          
+
           <!-- Preço e desconto -->
           <div class="mb-6">
             <span class="text-3xl font-bold text-neutral-900">${{ product.price }}</span>
@@ -59,10 +52,10 @@
           <div class="mt-12">
           </div>
 
-          <router-link
-            to="/"
-            class="block mt-8 text-blue-600 hover:underline">
-            ← Voltar para Produtos
+          <router-link to="/"
+            class="inline-flex items-center mt-8 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <span class="mr-2">←</span>
+            Voltar para Produtos
           </router-link>
         </div>
       </div>
