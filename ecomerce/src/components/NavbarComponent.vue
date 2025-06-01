@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-gray-800 p-4">
+  <nav class="bg-[#080C1C] p-4">
     <div class="container mx-auto flex justify-between items-center">
       <!-- Botão Sidebar -->
       <button @click="$emit('toggle-sidebar')" class="text-white hover:text-gray-300">
