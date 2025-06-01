@@ -30,9 +30,8 @@
       </div>
 
       <!-- Logo -->
-      <RouterLink to="/" class="bg-gradient-to-r from-[#4FACFE] to-[#8CE7FE] bg-clip-text text-transparent 
-               font-bold text-xl hover:opacity-80 transition-opacity duration-200">
-        TechMart
+      <RouterLink to="/" class="font-bold text-xl hover:opacity-80 transition-opacity duration-200">
+        <span class="brand-gradient">TechMart</span>
       </RouterLink>
     </div>
   </nav>
@@ -104,3 +103,19 @@ onMounted(() => {
   buscarProdutos()
 })
 </script>
+
+<style scoped>
+.brand-gradient {
+  background: linear-gradient(90deg, #4FACFE, #8CE7FE, #4FACFE, #8CE7FE);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: gradientMove 3s linear infinite;
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+</style>
