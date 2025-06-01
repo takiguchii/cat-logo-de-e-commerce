@@ -12,6 +12,7 @@
       <!-- Área de Pesquisa -->
       <div class="flex-1 mx-4">
         <div class="max-w-xl mx-auto relative">
+
           <!-- Campo de busca -->
           <input type="text" v-model="textoBusca" placeholder="Digite aqui..." class="w-full px-4 py-2 rounded-lg bg-[#080C1C] border border-[#4FACFE]/30 
                    text-[#F8F8F8] placeholder-[#F8F8F8]/50
@@ -51,37 +52,45 @@ const produtosEncontrados = ref([])
 
 // Buscar produtos quando o componente carregar
 async function buscarProdutos() {
-  try {
-    const resposta = await fetch('https://dummyjson.com/products')
-    const dados = await resposta.json()
+    try {
+      const resposta = await fetch('https://dummyjson.com/products?limit=100')
+      const dados = await resposta.json()
 
-    listaProdutos.value = dados.products
-  } catch (erro) {
-    console.log('Deu error...', erro)
+      if (!dados.products) {
+        console.error('Dados inválidos recebidos da API')
+        return
+      }
+
+      listaProdutos.value = dados.products
+      console.log(`Carregados ${dados.products.length} produtos`) // Debug
+    } catch (erro) {
+      console.error('Erro ao carregar produtos:', erro)
+    }
   }
-}
 
 // Procurar produtos quando digitar
 function procurarProdutos() {
-  if (!textoBusca.value) {
-    produtosEncontrados.value = []
-    return
-  }
+    if (!textoBusca.value) {
+      produtosEncontrados.value = []
+      return
+    }
 
-  // Filtrar produtos que começam com o texto digitado
-  produtosEncontrados.value = listaProdutos.value
-    .filter(produto =>
-      produto.title.toLowerCase().includes(textoBusca.value.toLowerCase())
-    )
-    .slice(0, 5) //altera o numero de sugestões 
-}
+    const busca = textoBusca.value.toLowerCase()
+    produtosEncontrados.value = listaProdutos.value
+      .filter(produto =>
+        produto.title.toLowerCase().includes(busca) ||
+        produto.description.toLowerCase().includes(busca) ||
+        produto.category.toLowerCase().includes(busca)
+      )
+      .slice(0, 5) //altera o numero de sugestões 
+  }
 
 // Vai para a pagina do produto 
 function irParaProduto(produto) {
-  router.push(`/produtos/item/${produto.id}`)
-  textoBusca.value = ''
-  produtosEncontrados.value = []
-}
+    router.push(`/produtos/item/${produto.id}`)
+    textoBusca.value = ''
+    produtosEncontrados.value = []
+  }
 
 // analisa a mudança do texto ( Quando vai adicionando as letras )
 import { watch } from 'vue'
