@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto p-6">
-        <!-- carregando estado -->
+        <!-- carregando-->
         <div v-if="loading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
             <div v-for="n in 20" :key="n" class="animate-pulse">
                 <div class="bg-gray-200 aspect-square rounded-lg"></div>
@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <!-- Error State -->
+        <!-- Verifica erro-->
         <div v-else-if="error" class="text-center text-red-600 py-10">
             {{ error }}
         </div>
@@ -19,12 +19,9 @@
         <!-- Produtos da grid -->
         <div v-else>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                <router-link
-                    v-for="product in currentProducts"
-                    :key="product.id"
+                <router-link v-for="product in currentProducts" :key="product.id"
                     :to="{ name: 'ProductDetail', params: { id: product.id } }"
-                    class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 block"
-                >
+                    class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 block">
                     <!-- Imagem do Produto (Sem o badge de estoque) -->
                     <div class="aspect-square">
                         <img :src="product.thumbnail" :alt="product.title" class="w-full h-full object-cover">
@@ -73,7 +70,15 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+const props = defineProps({
+    category: {
+        type: String,
+        default: ''
+    }
+})
 
 const products = ref([])
 const loading = ref(true)
@@ -91,17 +96,32 @@ const currentProducts = computed(() => {
 const fetchProducts = async () => {
     try {
         loading.value = true
-        const response = await fetch('https://dummyjson.com/products?limit=100')
+        error.value = null
+
+        const baseUrl = 'https://dummyjson.com/products'
+        const url = props.category
+            ? `${baseUrl}/category/${props.category}`
+            : `${baseUrl}?limit=100`
+
+        const response = await fetch(url)
+        if (!response.ok) throw new Error('Falha ao carregar produtos')
+
         const data = await response.json()
-        if (!data.products) throw new Error('Dados inválidos recebidos da API')
         products.value = data.products
+        currentPage.value = 1 // Reset to first page when changing categories
     } catch (err) {
-        error.value = 'Erro ao carregar produtos. Por favor, tente novamente.'
-        console.error('Erro:', err)
+        console.error('Erro ao carregar produtos:', err)
+        error.value = 'Erro ao carregar os produtos. Tente novamente mais tarde.'
+        products.value = []
     } finally {
         loading.value = false
     }
 }
+
+// Verificando as mudanças na categoria 
+watch(() => props.category, () => {
+    fetchProducts()
+})
 
 const nextPage = () => {
     if (currentPage.value < totalPages.value) {
