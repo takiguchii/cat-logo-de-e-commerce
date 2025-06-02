@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <h2 class="text-2xl font-bold text-neutral-800 text-center mb-8">{{ title }}</h2>
+    <h2 class="text-2xl font-extrabold text-[#4FACFE] text-center mb-8 tracking-wide">{{ title }}</h2>
 
     <!-- Container -->
     <div class="relative overflow-x-auto">
@@ -20,15 +20,15 @@
           v-for="product in productsToShow"
           :key="product.id"
           :to="{ name: 'ProductDetail', params: { id: product.id } }"
-          class="flex-shrink-0 w-64 bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all block"
+          class="flex-shrink-0 w-64 bg-[#F8F8F8] rounded-2xl shadow-lg overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-200 block"
         >
-          <div class="aspect-square">
-            <img :src="product.thumbnail" :alt="product.title" class="w-full h-full object-cover">
+          <div class="aspect-square overflow-hidden">
+            <img :src="product.thumbnail" :alt="product.title" class="w-full h-full object-cover rounded-xl transition-transform duration-200 hover:scale-105">
           </div>
           <div class="p-4">
             <h3 class="font-semibold text-neutral-800 text-center line-clamp-2">{{ product.title }}</h3>
-            <p class="text-green-600 font-bold text-center mt-2">${{ product.price }}</p>
-            <p v-if="showDiscount && product.discountPercentage" class="text-red-500 text-sm text-center">
+            <p class="text-[#4FACFE] font-bold text-center mt-2 text-lg">${{ product.price }}</p>
+            <p v-if="showDiscount && product.discountPercentage" class="text-orange-500 text-sm text-center font-bold">
               {{ Math.round(product.discountPercentage) }}% OFF
             </p>
           </div>
@@ -36,15 +36,19 @@
       </div>
 
       <!-- botões de navegação -->
-      <button @click="prevPage" class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white z-10"
-        :style="{ opacity: page === 0 ? 0.5 : 1 }">
+      <button @click="prevPage"
+        class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 border-2 border-[#4FACFE] text-[#4FACFE] p-2 rounded-full shadow-lg hover:bg-[#4FACFE] hover:text-white transition-colors duration-200 z-10"
+        :style="{ opacity: page === 0 ? 0.5 : 1 }"
+        aria-label="Página anterior">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
         </svg>
       </button>
 
-      <button @click="nextPage" class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white z-10"
-        :style="{ opacity: !hasMorePages ? 0.5 : 1 }">
+      <button @click="nextPage"
+        class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 border-2 border-[#4FACFE] text-[#4FACFE] p-2 rounded-full shadow-lg hover:bg-[#4FACFE] hover:text-white transition-colors duration-200 z-10"
+        :style="{ opacity: !hasMorePages ? 0.5 : 1 }"
+        aria-label="Próxima página">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
@@ -52,6 +56,7 @@
     </div>
   </div>
 </template>
+
 
 
 <script>

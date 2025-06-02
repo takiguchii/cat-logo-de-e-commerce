@@ -14,12 +14,13 @@ const categoryTitle = computed(() => {
 </script>
 
 <template>
-    <div class="min-h-screen bg-gray-100 py-10 px-4">
-        <div class="max-w-7xl mx-auto">
-            <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center capitalize">
-                {{ categoryTitle }}
-            </h1>
-            <ProductGridComponent :key="$route.params.category" :category="$route.params.category" />
-        </div>
+  <div class="min-h-screen bg-[#F8F8F8] py-10 px-4">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-3xl font-extrabold text-[#4FACFE] mb-8 text-center capitalize tracking-wide">
+        {{ categoryTitle }}
+      </h1>
+      <ProductGridComponent :key="$route.params.category" :category="$route.params.category" />
     </div>
+  </div>
 </template>
+
