@@ -26,7 +26,7 @@
           </svg>
         </button>
 
-        <div v-if="submenuAberto" class="ml-4 mt-2 space-y-1 border-l-2 border-[#4FACFE]/30">
+        <div v-if="submenuAberto" class="ml-4 mt-2 space-y-1 border-l-2 border-[#4FACFE]/30 overflow-y-auto max-h-[60vh]">
           <RouterLink v-for="category in categories" :key="category" :to="`/produtos/${category}`"
             class="block py-2 px-4 text-sm rounded hover:bg-[#4FACFE]/10 transition-colors border-l-2 border-transparent hover:border-[#4FACFE]">
             {{ formatCategoryName(category) }}
@@ -75,3 +75,22 @@ const formatCategoryName = (category) => {
 }
 </script>
 
+<style scoped>
+.overflow-y-auto {
+  scrollbar-width: thin;
+  scrollbar-color: #4B5563 #1F2937;
+}
+
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: #1F2937;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: #4B5563;
+  border-radius: 3px;
+}
+</style>

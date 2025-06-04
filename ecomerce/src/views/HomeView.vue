@@ -15,7 +15,7 @@ import ProductCardComponent from '../components/ProductCardComponent.vue'
     <main class="flex-1 flex flex-col justify-center items-center px-4 py-10 space-y-10">
       <div class="w-full max-w-[90vw] bg-white rounded-3xl p-10 shadow">
         <ProductCardComponent title="Ofertas Imperdíveis"
-          apiUrl="https://dummyjson.com/products?limit=24&skip=10&sort=price" :showDiscount="true" />
+          apiUrl="https://dummyjson.com/products?limit=100&skip=10&sort=price" :showDiscount="true" />
       </div>
       
       <div class="w-full max-w-[90vw] bg-white rounded-3xl p-10 shadow">
