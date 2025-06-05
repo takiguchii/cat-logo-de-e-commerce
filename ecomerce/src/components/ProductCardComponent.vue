@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <!-- Products -->
+      <!-- Produtos -->
       <div v-else class="flex gap-4 pb-4">
         <router-link v-for="product in visibleProducts" :key="product.id" :to="`/produtos/item/${product.id}`"
           class="flex-shrink-0 w-64 bg-[#F8F8F8] rounded-2xl shadow-lg overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-200">
@@ -31,7 +31,7 @@
         </router-link>
       </div>
 
-      <!-- Navigation buttons -->
+      <!-- botões de navegação -->
       <button @click="prevPage"
         class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 border-2 border-[#4FACFE] text-[#4FACFE] p-2 rounded-full shadow-lg hover:bg-[#4FACFE] hover:text-white transition-colors z-10">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

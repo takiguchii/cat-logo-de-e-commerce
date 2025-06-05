@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto p-6">
-    <!-- Loading state -->
+    <!-- Carrega pagina -->
     <div v-if="loading" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
       <div v-for="n in 20" :key="n" class="animate-pulse">
         <div class="bg-gray-200 aspect-square rounded-2xl"></div>
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <!-- Error state -->
+    <!-- Verifica erros  -->
     <div v-else-if="error" class="text-center text-red-600 py-10">
       {{ error }}
     </div>
@@ -41,7 +41,7 @@
         </router-link>
       </div>
 
-      <!-- Pagination -->
+      <!-- Paginação -->
       <div class="mt-8 flex justify-center gap-4">
         <button @click="page = page - 1" :disabled="page === 1"
           class="px-4 py-2 bg-[#4FACFE] text-white rounded-xl font-semibold shadow hover:bg-[#8CE7FE] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
