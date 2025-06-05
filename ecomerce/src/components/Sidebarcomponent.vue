@@ -5,7 +5,7 @@
       <h1 class="text-xl font-bold">TechMart</h1>
     </div>
 
-    <!-- Navigation Menu -->
+    <!-- Menu lateral  -->
     <nav class="p-4 space-y-3">
       <RouterLink to="/" class="block py-2 px-4 rounded hover:bg-[#4FACFE]/10 transition-colors">
         Início
@@ -33,10 +33,6 @@
           </RouterLink>
         </div>
       </div>
-
-      <RouterLink to="/contato" class="block py-2 px-4 rounded hover:bg-[#4FACFE]/10 transition-colors">
-        Contato
-      </RouterLink>
     </nav>
   </div>
 </template>
