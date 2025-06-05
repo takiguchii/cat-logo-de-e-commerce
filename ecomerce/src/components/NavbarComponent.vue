@@ -14,15 +14,21 @@
         <div class="max-w-xl mx-auto relative">
 
           <!-- Campo de busca -->
-          <input type="text" v-model="textoBusca" placeholder="Digite aqui..." class="w-full px-4 py-2 rounded-lg bg-[#080C1C] border border-[#4FACFE]/30 
-                   text-[#F8F8F8] placeholder-[#F8F8F8]/50
-                   focus:outline-none focus:border-[#4FACFE] focus:ring-1 focus:ring-[#4FACFE]" />
+          <input 
+            type="text" 
+            v-model="busca" 
+            placeholder="Digite aqui..." 
+            class="w-full px-4 py-2 rounded-lg bg-[#080C1C] border border-[#4FACFE]/30 text-[#F8F8F8] placeholder-[#F8F8F8]/50 focus:outline-none focus:border-[#4FACFE] focus:ring-1 focus:ring-[#4FACFE]" 
+          />
 
-          <!-- Lista de sugestões -->
-          <div v-if="textoBusca && produtosEncontrados.length > 0"
-            class="absolute w-full mt-2 py-2 bg-[#080C1C] border border-[#4FACFE]/30 rounded-lg">
-            <div v-for="produto in produtosEncontrados" :key="produto.id"
-              class="px-4 py-2 hover:bg-[#4FACFE]/10 cursor-pointer text-[#F8F8F8]" @click="irParaProduto(produto)">
+          <!-- Sugestões -->
+          <div v-if="busca && produtosEncontrados.length" class="absolute w-full mt-2 py-2 bg-[#080C1C] border border-[#4FACFE]/30 rounded-lg">
+            <div
+              v-for="produto in produtosEncontrados"
+              :key="produto.id"
+              @click="irParaProduto(produto)"
+              class="px-4 py-2 hover:bg-[#4FACFE]/10 cursor-pointer text-[#F8F8F8]"
+            >
               {{ produto.title }}
             </div>
           </div>
@@ -37,71 +43,55 @@
   </nav>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
+<script>
+import axios from 'axios'
 
-// Emits para o sidebar
-defineEmits(['toggle-sidebar'])
-
-const router = useRouter()
-const textoBusca = ref('')
-const listaProdutos = ref([])
-const produtosEncontrados = ref([])
-
-// Buscar produtos quando o componente carregar
-async function buscarProdutos() {
-    try {
-      const resposta = await fetch('https://dummyjson.com/products?limit=300')
-      const dados = await resposta.json()
-
-      if (!dados.products) {
-        console.error('Dados inválidos recebidos da API')
+export default {
+  data() {
+    return {
+      busca: '',
+      produtos: [],
+      produtosEncontrados: []
+    }
+  },
+  watch: {
+    busca() {
+      this.buscarProdutos()
+    }
+  },
+  methods: {
+    async carregarProdutos() {
+      try {
+        const response = await axios.get('https://dummyjson.com/products?limit=300')
+        this.produtos = response.data.products
+      } catch (erro) {
+        console.error('Erro:', erro)
+      }
+    },
+    buscarProdutos() {
+      if (!this.busca) {
+        this.produtosEncontrados = []
         return
       }
 
-      listaProdutos.value = dados.products
-      console.log(`Carregados ${dados.products.length} produtos`) // Debug
-    } catch (erro) {
-      console.error('Erro ao carregar produtos:', erro)
+      const termo = this.busca.toLowerCase()
+      this.produtosEncontrados = this.produtos
+        .filter(p => 
+          p.title.toLowerCase().includes(termo) ||
+          p.category.toLowerCase().includes(termo)
+        )
+        .slice(0, 5)
+    },
+    irParaProduto(produto) {
+      this.$router.push(`/produtos/item/${produto.id}`)
+      this.busca = ''
+      this.produtosEncontrados = []
     }
+  },
+  mounted() {
+    this.carregarProdutos()
   }
-
-// Procurar produtos quando digitar
-function procurarProdutos() {
-    if (!textoBusca.value) {
-      produtosEncontrados.value = []
-      return
-    }
-
-    const busca = textoBusca.value.toLowerCase()
-    produtosEncontrados.value = listaProdutos.value
-      .filter(produto =>
-        produto.title.toLowerCase().includes(busca) ||
-        produto.description.toLowerCase().includes(busca) ||
-        produto.category.toLowerCase().includes(busca)
-      )
-      .slice(0, 5) //altera o numero de sugestões 
-  }
-
-// Vai para a pagina do produto 
-function irParaProduto(produto) {
-    router.push(`/produtos/item/${produto.id}`)
-    textoBusca.value = ''
-    produtosEncontrados.value = []
-  }
-
-// analisa a mudança do texto ( Quando vai adicionando as letras )
-import { watch } from 'vue'
-watch(textoBusca, () => {
-  procurarProdutos()
-})
-
-// Carregar produtos quando iniciar
-import { onMounted } from 'vue'
-onMounted(() => {
-  buscarProdutos()
-})
+}
 </script>
 
 <style scoped>
