@@ -17,16 +17,6 @@ TechMart é uma aplicação web moderna de e-commerce desenvolvida com Vue.js e 
 
 ## 🖥️ Demonstração
 
-### Página Inicial
-![Página Inicial](docs/screenshots/home.png)
-
-### Detalhes do Produto
-![Detalhes do Produto](docs/screenshots/product.png)
-
-### Carrinho de Compras
-![Carrinho](docs/screenshots/cart.png)
-
-
 
 ## 🚀 Como Executar o Projeto
 
@@ -71,8 +61,7 @@ npm run dev
 [Clique aqui para assistir ao vídeo de demonstração no YouTube](https://youtube.com/seu-video)
 
 ## 👥 Autores
-- [Nome do Autor 1](https://github.com/autor1)
-- [Nome do Autor 2](https://github.com/autor2)
+- [Alexandre Takiguchi RA: 2003762](https://github.com/takiguchii)
+- [Raul Fabiano RA: 2001086](https://github.com/Racx-DEV)
 
-## 📝 Licença
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
