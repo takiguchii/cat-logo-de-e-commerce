@@ -1,32 +1,51 @@
-# TechMart - E-commerce de Tecnologia
+# TechMart E-commerce
 
-## 📝 Descrição
-TechMart é uma aplicação web moderna de e-commerce desenvolvida com Vue.js e Tailwind CSS. A plataforma oferece uma experiência de compra intuitiva com diversas funcionalidades:
+Um e-commerce moderno construído com Vue.js e TailwindCSS, oferecendo uma experiência de compra fluida e responsiva.
 
-### Funcionalidades Principais
-- 🏠 **Página Inicial**: Exibe produtos em destaque e ofertas especiais
-- 🔍 **Busca de Produtos**: Sistema de busca integrado na barra de navegação
-- 📱 **Design Responsivo**: Interface adaptável para todos os dispositivos
-- 🗂️ **Categorias**: Navegação por categorias de produtos
-- 🛍️ **Detalhes do Produto**: Visualização detalhada com:
-  - Imagens do produto
-  - Descrição completa
-  - Preço e descontos
-  - Avaliações dos clientes
-  - Informações de estoque
+## 🚀 Funcionalidades
 
-## 🚀 Como Executar o Projeto
+- ✨ Interface moderna e responsiva
+- 🔍 Busca em tempo real de produtos
+- 📱 Menu lateral adaptativo
+- 🛍️ Listagem de produtos por categoria
+- 📦 Detalhes completos do produto
+- 🔄 Navegação intuitiva entre páginas
 
-### Pré-requisitos
-- Node.js (versão 18 ou superior)
-- npm (gerenciador de pacotes do Node)
+## 📸 Screenshots
 
-### Instalação
+### Homepage
+![Homepage](./src/assets/img/home.png)
+*Página inicial com destaque para ofertas e produtos em destaque*
+
+### Menu de Categorias
+![Categorias](./src/assets/img/categorias.png)
+*Menu lateral com todas as categorias disponíveis*
+
+### Lista de Produtos
+![Produtos](./src/assets/img/produtos.png)
+*Visualização em grid dos produtos com paginação*
+
+### Detalhes do Produto
+![Detalhes](./src/assets/img/detalhes.png)
+*Página detalhada do produto com imagens, descrição e avaliações*
+
+### Busca de Produtos
+![Busca](./src/assets/img/busca.png)
+*Sistema de busca em tempo real com sugestões*
+
+## 🛠️ Tecnologias Utilizadas
+
+- Vue.js 3
+- Vue Router
+- TailwindCSS
+- Axios
+- DummyJSON API
+
+## 🚀 Como Executar
 
 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/cat-logo-de-e-commerce.git
-cd cat-logo-de-e-commerce/ecomerce
+git clone [url-do-repositorio]
 ```
 
 2. Instale as dependências
@@ -34,23 +53,22 @@ cd cat-logo-de-e-commerce/ecomerce
 npm install
 ```
 
-3. Execute o projeto em modo de desenvolvimento
+3. Execute o projeto
 ```bash
 npm run dev
 ```
 
-4. Acesse a aplicação
-- Abra seu navegador e acesse: `http://localhost:5173`
+## 🤝 Contribuindo
 
-### Scripts Disponíveis
-- `npm run dev`: Inicia o servidor de desenvolvimento
-- `npm run build`: Gera a versão de produção
-- `npm run preview`: Visualiza a versão de produção localmente
+Contribuições são sempre bem-vindas! Para contribuir:
 
-## 🛠️ Tecnologias Utilizadas
-- Vue.js 3
-- Vue Router
-- Tailwind CSS
-- Axios
-- DummyJSON API
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
