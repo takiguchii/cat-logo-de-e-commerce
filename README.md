@@ -18,16 +18,13 @@ TechMart é uma aplicação web moderna de e-commerce desenvolvida com Vue.js e 
 ## 🖥️ Demonstração
 
 ### Página Inicial
-![Página Inicial](./src/Assets/Img/Home-Catlog.png)
+![Página Inicial](docs/screenshots/home.png)
 
-### SideBar
-![SideBar](./src/assets/img/SidebarCAtlog.png)
+### Detalhes do Produto
+![Detalhes do Produto](docs/screenshots/product.png)
 
-### Paginação
-![Paginação](./src/assets/img/PagitionCatlog.png)
-
-### Detalhe do produto
-![Detalhe do produto](./src/assets/img/ProductDetalhe.png)
+### Carrinho de Compras
+![Carrinho](docs/screenshots/cart.png)
 
 
 
