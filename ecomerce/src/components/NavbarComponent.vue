@@ -14,21 +14,14 @@
         <div class="max-w-xl mx-auto relative">
 
           <!-- Campo de busca -->
-          <input 
-            type="text" 
-            v-model="busca" 
-            placeholder="Digite aqui..." 
-            class="w-full px-4 py-2 rounded-lg bg-[#080C1C] border border-[#4FACFE]/30 text-[#F8F8F8] placeholder-[#F8F8F8]/50 focus:outline-none focus:border-[#4FACFE] focus:ring-1 focus:ring-[#4FACFE]" 
-          />
+          <input type="text" v-model="busca" placeholder="Digite aqui..."
+            class="w-full px-4 py-2 rounded-lg bg-[#080C1C] border border-[#4FACFE]/30 text-[#F8F8F8] placeholder-[#F8F8F8]/50 focus:outline-none focus:border-[#4FACFE] focus:ring-1 focus:ring-[#4FACFE]" />
 
           <!-- Sugestões -->
-          <div v-if="busca && produtosEncontrados.length" class="absolute w-full mt-2 py-2 bg-[#080C1C] border border-[#4FACFE]/30 rounded-lg">
-            <div
-              v-for="produto in produtosEncontrados"
-              :key="produto.id"
-              @click="irParaProduto(produto)"
-              class="px-4 py-2 hover:bg-[#4FACFE]/10 cursor-pointer text-[#F8F8F8]"
-            >
+          <div v-if="busca && produtosEncontrados.length"
+            class="absolute w-full mt-2 py-2 bg-[#080C1C] border border-[#4FACFE]/30 rounded-lg">
+            <div v-for="produto in produtosEncontrados" :key="produto.id" @click="irParaProduto(produto)"
+              class="px-4 py-2 hover:bg-[#4FACFE]/10 cursor-pointer text-[#F8F8F8]">
               {{ produto.title }}
             </div>
           </div>
@@ -76,7 +69,7 @@ export default {
 
       const termo = this.busca.toLowerCase()
       this.produtosEncontrados = this.produtos
-        .filter(p => 
+        .filter(p =>
           p.title.toLowerCase().includes(termo) ||
           p.category.toLowerCase().includes(termo)
         )
@@ -104,8 +97,14 @@ export default {
   color: transparent;
   animation: gradientMove 3s linear infinite;
 }
+
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
 }
 </style>
