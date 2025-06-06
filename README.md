@@ -58,7 +58,7 @@ npm run dev
 - DummyJSON API
 
 ## 🎥 Vídeo Demonstrativo
-[Clique aqui para assistir ao vídeo de demonstração no YouTube](https://youtube.com/seu-video)
+[Clique aqui para assistir ao vídeo de demonstração no YouTube](https://youtu.be/Mnvc9MIh2ig)
 
 ## 👥 Autores
 - [Alexandre Takiguchi RA: 2003762](https://github.com/takiguchii)
