@@ -52,7 +52,7 @@ npm run dev
 
 ## 🛠️ Tecnologias Utilizadas
 - Vue.js 3
-- Vue Router
+- Vite
 - Tailwind CSS
 - Axios
 - DummyJSON API
