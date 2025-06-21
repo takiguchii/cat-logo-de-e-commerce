@@ -9,7 +9,7 @@
         Aqui Você encontra o que procura. 
       </p>
       <p>
-        Aplicando new teste 
+        criando mais um teste aqui 
       </p>
     </div>
   </footer>
