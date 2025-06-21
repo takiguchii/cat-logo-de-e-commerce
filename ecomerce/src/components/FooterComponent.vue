@@ -6,7 +6,7 @@
         TechMart
       </h2>
       <p class="text-[#F8F8F8]/70 text-sm">
-        Aqui você encontra o que procura
+        Aqui Você encontra o que procura. 
       </p>
     </div>
   </footer>
