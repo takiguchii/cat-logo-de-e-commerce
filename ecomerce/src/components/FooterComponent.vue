@@ -9,7 +9,7 @@
         Aqui Você encontra o que procura. 
       </p>
       <p>
-        Aplicando teste do git in vscode 
+        Aplicando new teste 
       </p>
     </div>
   </footer>
