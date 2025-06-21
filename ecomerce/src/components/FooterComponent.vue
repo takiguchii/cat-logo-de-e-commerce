@@ -8,6 +8,7 @@
       <p class="text-[#F8F8F8]/70 text-sm">
         Aqui Você encontra o que procura. 
       </p>
+      <p>Criando teste</p>
     </div>
   </footer>
 </template>
