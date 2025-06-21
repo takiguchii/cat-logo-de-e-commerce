@@ -8,6 +8,9 @@
       <p class="text-[#F8F8F8]/70 text-sm">
         Aqui Você encontra o que procura. 
       </p>
+      <p>
+        Aplicando teste do git in vscode 
+      </p>
     </div>
   </footer>
 </template>
